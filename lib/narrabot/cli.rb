@@ -1,0 +1,3 @@
+class Narrabot::CLI
+
+end
