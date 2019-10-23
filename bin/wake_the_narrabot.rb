@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
-require_relatives
+#require_relative '../lib/environment'
 
-# require 'tts'
+#require 'tts'
 # Will download "Hello World!.mp3" to your current directory
 # Supported languages: ["zh", "en", "it", "fr"]
-"Hello World!".play ("en")
+"Hello I am the narrabot!".play ("it")
 
-
+Narrabot::CLI.new.start  #THIS IS HOW TO START THE PROGRAM
 =begin
 require 'nokogiri'
 require 'open-uri'

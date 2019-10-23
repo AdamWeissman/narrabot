@@ -1,4 +1,5 @@
-require "narrabot/version"
+require_relative "narrabot/version"
+require_relative "narrabot/cli"
 
 module Narrabot
   class Error < StandardError; end
