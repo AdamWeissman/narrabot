@@ -2,7 +2,7 @@
 
 #require_relative '../lib/environment'
 
-#require 'tts'
+require 'tts'
 # Will download "Hello World!.mp3" to your current directory
 # Supported languages: ["zh", "en", "it", "fr"]
 "Hello I am the narrabot!".play ("it")
