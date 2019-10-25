@@ -14,10 +14,14 @@ class Narrabot::Scraper
   #How does the scraper work?
   #  each collection will have three "in real time" methods.
 =begin
-     1) it returns the name of each constant collection (although maybe this is just hardcoded?)
+     1) it returns the name of each constant collection (although this is just hardcoded... seems pointless to scrape ONE single 'table of contents' via code when you have to type the name of variable anyways)
      2) it scrapes the CONSTANT and returns STORY TITLES and STORY LINKS which story_collection_contents turns into an object
-          NOTE: the story_collection_contents also has a "blank" space to be populated by the second method...
-          ANOTHER NOTE: it only performs this 2nd method if the collection is selected
+          NOTE: the Titles and Links will go into the appropriate object in story_collection_contents...
+            the name of the collection will be hardcoded to correspond with the variable
+                aesops_table_of_contents = "Aesop's Fables"
+                hans_tables_of_contents = "Hans Christian Andersen Stories"
+                etc...
+        This METHOD appears on 
      3) it scrapes the link given (the story chosen) for text...
           IN OTHER WORDS:
 =end
