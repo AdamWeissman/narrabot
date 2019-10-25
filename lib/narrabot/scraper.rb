@@ -1,50 +1,35 @@
 #!/usr/bin/env ruby
 
-module Narrabot::Scraper
+class Narrabot::Scraper
+
+  require 'nokogiri'
+  require 'open-uri'
+
+  AESOP_STORY_COLLECTION = "http://www.read.gov/aesop/001.html"
+
+
+
+
+WHAT AM I DOING?
+  I am scraping the story collection
+  To get a list of a fables that (the Lazy_Librarian) will then use to create the general index of stories
+  with the titles of the stories and also the links
+
+WHAT I WILL DO NEXT...
+  I will then use the link variables from lazy_librarian to pass to the secondary scraper here
+  in order to...
+    scrape individual stories (when people select those stories from lazy librarian's collection)
+
+
+
+  doc = Nokogiri::HTML(open(site))
+  #puts doc
+  story = doc.css("p")
+  story.each {|sentence| puts sentence.text}
+  #aesop_individual_fable_place_holder = "http://www.read.gov/aesop/002.html"
+  moral_of_the_story = doc.css("blockquote")
+  puts "THE MORAL OF THE STORY IS " + moral_of_the_story.text
+
+
 
 end
-
-=begin
-require 'open-uri'
-require 'pry'
-
-class Scraper
-
-  def self.scrape_index_page(index_url)
-    index_page = Nokogiri::HTML(open(index_url))
-    students = []
-    index_page.css("div.roster-cards-container").each do |card|
-      card.css(".student-card a").each do |student|
-        student_profile_link = "#{student.attr('href')}"
-        student_location = student.css('.student-location').text
-        student_name = student.css('.student-name').text
-        students << {name: student_name, location: student_location, profile_url: student_profile_link}
-      end
-    end
-    students
-  end
-
-  def self.scrape_profile_page(profile_slug)
-    student = {}
-    profile_page = Nokogiri::HTML(open(profile_slug))
-    links = profile_page.css(".social-icon-container").children.css("a").map { |el| el.attribute('href').value}
-    links.each do |link|
-      if link.include?("linkedin")
-        student[:linkedin] = link
-      elsif link.include?("github")
-        student[:github] = link
-      elsif link.include?("twitter")
-        student[:twitter] = link
-      else
-        student[:blog] = link
-      end
-    end
-
-    student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
-    student[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder p").text if profile_page.css("div.bio-content.content-holder div.description-holder p")
-
-    student
-  end
-
-end
-=end
