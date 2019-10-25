@@ -21,9 +21,11 @@ class Narrabot::Scraper
                 aesops_table_of_contents = "Aesop's Fables"
                 hans_tables_of_contents = "Hans Christian Andersen Stories"
                 etc...
-        This METHOD appears on 
+        This method is "invoked" when a hardcored story collection is selected. (see program_diagram)
+        When the story collection is selected from the first CLI screen it scrapes on demand (in real time)
+        The story_collection_contents object reveals the contents (so code to reveal contents is there, but data is pushed into that object from here)
      3) it scrapes the link given (the story chosen) for text...
-          IN OTHER WORDS:
+          IN OTHER WORDS: when a story is selected from the table of contents (which is scraped in method 2)... this method (3) scrapes on demand the text for that story
 =end
 
 
