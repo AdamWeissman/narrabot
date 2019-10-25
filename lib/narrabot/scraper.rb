@@ -5,20 +5,25 @@ class Narrabot::Scraper
   require 'nokogiri'
   require 'open-uri'
 
-  AESOP_STORY_COLLECTION = "http://www.read.gov/aesop/001.html"
+  AESOP_FABLES = "http://www.read.gov/aesop/001.html"
+  HAN_CHRISTIAN_ANDERSEN = "http://www.gutenberg.org/files/27200/27200-h/27200-h.htm"
+  BROTHERS_GRIMM = "https://www.gutenberg.org/files/2591/2591-h/2591-h.htm"
+  JAPANESE_FOLKTALES = "http://www.gutenberg.org/files/35853/35853-h/35853-h.htm"
+  ZEN_KOANS_SHASEKI_SHU = "http://www.ashidakim.com/zenkoans/zenindex.html"
+
+  #How does the scraper work?
+  #  each collection will have three "in real time" methods.
+=begin
+     1) it returns the name of each constant collection (although maybe this is just hardcoded?)
+     2) it scrapes the CONSTANT and returns STORY TITLES and STORY LINKS which story_collection_contents turns into an object
+          NOTE: the story_collection_contents also has a "blank" space to be populated by the second method...
+          ANOTHER NOTE: it only performs this 2nd method if the collection is selected
+     3) it scrapes the link given (the story chosen) for text...
+          IN OTHER WORDS:
+=end
 
 
 
-
-WHAT AM I DOING?
-  I am scraping the story collection
-  To get a list of a fables that (the Lazy_Librarian) will then use to create the general index of stories
-  with the titles of the stories and also the links
-
-WHAT I WILL DO NEXT...
-  I will then use the link variables from lazy_librarian to pass to the secondary scraper here
-  in order to...
-    scrape individual stories (when people select those stories from lazy librarian's collection)
 
 
 

@@ -1,0 +1,61 @@
+Narrabot...
+
+
+Perspective from The User Experience:
+  User comes to greet screen (the CLI?)
+    "Hi, what's your name?"
+      Gets User name
+    Uses TTS to greet the name with speech... introduces self as narrabot, would you like to see my
+    collection of stories?
+
+  User prompted y or n (will accept Y, N or YES, NO and other variations, error handling... HUH?)
+
+  User will then have story collections appear
+    for the purpose of this project will probably ONLY be Aesop's fables
+    UPDATE (Hans Christian Andersen IS scrapable!!!!! http://www.gutenberg.org/files/27200/27200-h/27200-h.htm)
+      But...
+        I want to write the code for scraper, story_collections_contents and text_from_each_story
+        to be reusable enough that I could do:
+          Hans Christian Anderson
+          Brother's Grimm
+            or
+          Other Fairy Tales and Folk Talkes in the future
+        CONSDIER -- writing scraper as a module instead of a class and have each story_collections_contents
+        perform the actual scrape?  Not sure.  Check with instructor
+
+  After the story collection is selected (for this project only Aesop)
+    the user will then be prompted:
+      Would you like to see the entire table of contents?
+        (will show <=10 stories at a time, and prompt user to see MORE or CANCEL)
+        If User DOES NOT want to see entire table of contents secondary prompt?
+          Would you like me to choose a story for you? (y / n) and it's randomized
+        Last OPTION:
+          Tell me about what's going on in your life and let me recommend a story for you.
+            This basically does the same randomized story, except the selection will be limited to the most
+            popular stories (this would probably have to be hard-coded in order to provide an acceptable
+            "illusion" -- like the magic 8 ball toy)
+
+  Once the story is selected:
+    TTS (text to speech gem) will read the story out loud
+    AND... while this is happening, will play an animated ascii image (loop through ascii text files)
+    check flair RB for notes on how to do this
+
+
+REGARDING ACTUAL CODE:
+
+  cli.rb (all above as the user experience)
+
+  scraper.rb -- NOTE: student scraper insufficient as model
+    essentially, I want to write scraper.rb as a module which will be extended by story_collection_contents
+    the reason being that although this is just aesop, if time permits I can add additional stories.
+
+    for example Hans Christian Andersen
+    http://www.gutenberg.org/files/27200/27200-h/27200-h.htm
+
+
+
+  story_collection_contents.rb
+  text_from_each_story.rb
+
+  flair.rb ... this will have to be a folder for ascii images, but the flair.rb will run the loop as explained
+  in Sammy Steiner's blog post... and also the other post I found on medium (notes in flair)

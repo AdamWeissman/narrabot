@@ -4,6 +4,25 @@ class Narrabot::CLI
   end
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =begin
 
 require_relative "../lib/scraper.rb"
