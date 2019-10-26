@@ -1,7 +1,27 @@
 class Narrabot::CLI
   def start
     puts "Hello"
+    make_stories
+    list_all_stories
+    choose_story(user_input)
   end
+
+  def list_all_stories
+    puts "here are all the stories, choose a number for the story you want."
+    Narrabot::Story.table_of_contents.each.with_index(1) do |thing, num|
+      puts "#{num} for #{thing.title}"
+    end
+    input = gets.chomp.to_i #YOU ARE HERE
+  end
+
+  def make_stories #calling the scraper
+    Narrabot::Scraper.aesop_fable_toc_titles_and_links
+    #Narrabot::Story.new("Something", "http://www.something.com")
+    #Narrabot::Story.new("Something Else", "http://www.somethingelse.com")
+  end
+
+  def choose_story()
+
 end
 
 

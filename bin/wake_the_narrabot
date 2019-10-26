@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/environment'
+
+
+"Hello I am the narrabot!".play ("en")
+# Supported languages: ["zh", "en", "it", "fr"]
+
+Narrabot::CLI.new.start  #THIS IS HOW TO START THE PROGRAM
