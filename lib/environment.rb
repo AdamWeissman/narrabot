@@ -6,6 +6,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'tts'
 require 'pry'
+require 'colorize'
 
 module Narrabot
   class Error < StandardError; end
