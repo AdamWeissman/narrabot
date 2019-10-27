@@ -15,5 +15,9 @@ class Narrabot::Story
     @@table_of_contents
   end
 
+  def the_text()
+
+  end
+
 
 end

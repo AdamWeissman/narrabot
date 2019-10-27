@@ -30,7 +30,8 @@ class Narrabot::Scraper
     formatting_text_step_1 = collect_em_all.to_s.gsub(/\<\/p\>/, "\n" )
     formatted_text = formatting_text_step_1.gsub!(/\<p\>/, "   " )
 
-    formatted_text + "\n" + aesop_moral_of_the_story(a_single_fable_by_aesop).to_s
+    the_whole_story = formatted_text + "\n" + aesop_moral_of_the_story(a_single_fable_by_aesop).to_s
+    the_whole_story
   end
 
   def self.aesop_moral_of_the_story(waiting_for_a_fable_from_aesop_fable_text) #this is a helper method for aesop_fable_text

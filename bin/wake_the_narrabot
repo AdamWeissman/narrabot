@@ -3,7 +3,7 @@
 require_relative '../lib/environment'
 
 
-"Hello I am the narrabot!".play ("en")
+#"Ready for a story?".play ("en")
 # Supported languages: ["zh", "en", "it", "fr"]
 
 Narrabot::CLI.new.start  #THIS IS HOW TO START THE PROGRAM
