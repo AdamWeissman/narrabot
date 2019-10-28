@@ -15,7 +15,6 @@ class Narrabot::The_Text_From_Each_Story
     use_this_to_index = (Narrabot::Story.table_of_contents).to_a
     scrape_text_from_here = BASE_URL + use_this_to_index[from_input].the_link #remember you're grabbing it from an object -- hence: '.the_link'
     read_this = Narrabot::Scraper.aesop_fable_text(scrape_text_from_here)
-    #read_this.play ("en")
   end
 
   def self.text_for_stories_hash

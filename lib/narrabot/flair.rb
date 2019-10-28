@@ -7,3 +7,23 @@
 #https://media.giphy.com/media/Arxo26T2VGbW8/giphy.gif
 
 #https://sammysteiner.github.io/blog/2017/04/13/bringing-terminal-applications-to-life-cli-animations-with-ruby/
+
+
+class Narrabot::Flair
+
+  def animation
+    #z = 1
+    #while z < 20
+      i = 1
+      while i < 3
+        print "\033[2J"
+        File.foreach("lib/narrabot/flair_folder/#{i}.txt") { |f| puts f }
+        sleep(0.03)
+        i += 1
+      end
+    #  z += 1
+    #end
+  end
+
+
+end

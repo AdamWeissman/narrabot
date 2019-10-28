@@ -5,8 +5,10 @@ class Narrabot::CLI
   #BASE_URL = "http://www.read.gov/aesop/"
 
   def start
-    make_stories
-    list_all_stories
+    x = Narrabot::Flair.new
+    x.animation
+    #make_stories
+    #list_all_stories
   end
 
   def list_all_stories
@@ -28,12 +30,5 @@ class Narrabot::CLI
     "You have chosen #{use_this_to_index[input].title}".play ("en")
     Narrabot::The_Text_From_Each_Story.text_for_stories_hash[input].play ("en")
   end
-
-#  def get_story_text(from_input)
-#    use_this_to_index = (Narrabot::Story.table_of_contents).to_a
-#    scrape_text_from_here = BASE_URL + use_this_to_index[from_input - 1].the_link
-#    read_this = Narrabot::Scraper.aesop_fable_text(scrape_text_from_here)
-#    read_this.play ("en")
-#  end
 
 end

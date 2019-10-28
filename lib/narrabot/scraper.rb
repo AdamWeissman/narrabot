@@ -41,12 +41,7 @@ class Narrabot::Scraper
     #"THE MORAL OF THE STORY IS " + moral_of_the_story.text
   end
 
-  #puts aesop_fable_text("http://www.read.gov/aesop/002.html") #<=this tests the function
-
-  #aesop_fable_text("http://www.read.gov/aesop/002.html")
-
-
-  #SCRAPING HANS CHRISTIAN ANDERSEN...
+  #SCRAPING HANS CHRISTIAN ANDERSEN, MAYBE...
   #hca_site_contents = "http://www.gutenberg.org/files/27200/27200-h/27200-h.htm"
 
   #TABLE OF CONTENTS, TITLES AND LINKS...
@@ -61,7 +56,5 @@ class Narrabot::Scraper
 
   #  hca_table_of_contents_titles.zip(hca_table_of_contents_links)
   #end
-
-
 
 end
