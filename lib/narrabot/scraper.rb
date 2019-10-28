@@ -1,6 +1,7 @@
 class Narrabot::Scraper
 
   AESOP_FABLES = "http://www.read.gov/aesop/001.html"
+  BASE_URL = "http://www.read.gov/aesop/"
   #HAN_CHRISTIAN_ANDERSEN = "http://www.gutenberg.org/files/27200/27200-h/27200-h.htm"
   #BROTHERS_GRIMM = "https://www.gutenberg.org/files/2591/2591-h/2591-h.htm"
   #JAPANESE_FOLKTALES = "http://www.gutenberg.org/files/35853/35853-h/35853-h.htm"
