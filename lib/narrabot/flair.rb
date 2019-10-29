@@ -11,9 +11,8 @@
 
 class Narrabot::Flair
 
-  def animation
-    #z = 1
-    #while z < 20
+  def animation_during(this_here, only_if_on)
+      #if ON_BUTTON_SET_
       i = 1
       while i < 3
         print "\033[2J"
@@ -21,9 +20,12 @@ class Narrabot::Flair
         sleep(0.03)
         i += 1
       end
-    #  z += 1
-    #end
   end
 
-
 end
+
+
+# pseudocode mock up of how animation in parallel might work...
+# make this: Narrabot::The_Text_From_Each_Story.text_for_stories_hash[input].play ("en")
+#   into its own function with an additional line of code that sets some variable to waiting_for_a_fable_from_aesop_fable_text
+# the OFF variable

@@ -15,5 +15,4 @@ class Narrabot::Story
     @@table_of_contents
   end
 
-
 end

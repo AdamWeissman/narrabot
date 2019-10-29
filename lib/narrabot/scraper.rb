@@ -24,15 +24,15 @@ class Narrabot::Scraper
   end
 
   #TEXT FOR EACH STORY
-  def self.aesop_fable_text(get_it_from_this_link_here)
-    a_single_fable_by_aesop = Nokogiri::HTML(open(get_it_from_this_link_here))
+  def self.aesop_fable_text(story_object)
+    a_single_fable_by_aesop = Nokogiri::HTML(open(BASE_URL + story_object.the_link))
     sentence_by_sentence = a_single_fable_by_aesop.css("p")
     collect_em_all = sentence_by_sentence.each {|sentence| sentence.text}
     formatting_text_step_1 = collect_em_all.to_s.gsub(/\<\/p\>/, "\n" )
     formatted_text = formatting_text_step_1.gsub!(/\<p\>/, "   " )
 
     the_whole_story = formatted_text + "\n" + aesop_moral_of_the_story(a_single_fable_by_aesop).to_s
-    the_whole_story
+    story_object.the_text = the_whole_story
   end
 
   def self.aesop_moral_of_the_story(waiting_for_a_fable_from_aesop_fable_text) #this is a helper method for aesop_fable_text
