@@ -2,7 +2,6 @@ require_relative "narrabot/version"
 require_relative "narrabot/cli"
 require_relative "narrabot/story"
 require_relative "narrabot/scraper"
-require_relative "narrabot/flair"
 require 'nokogiri'
 require 'open-uri'
 require 'tts'
