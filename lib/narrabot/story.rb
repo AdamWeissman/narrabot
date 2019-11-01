@@ -1,7 +1,7 @@
 
 class Narrabot::Story
   attr_reader :title, :the_link
-  attr_accessor :the_text, :the_moral, :text_and_moral
+  attr_accessor :the_text, :the_moral, :text_and_moral, :parting_moral
 
   @@table_of_contents = []
   @@morals = []
@@ -16,7 +16,7 @@ class Narrabot::Story
     @@table_of_contents
   end
 
-  def the_moral=(x)
+  def parting_moral=(x)
     @@morals << x
   end
 

@@ -7,9 +7,13 @@ class Narrabot::CLI
 
   def start
     @name = set_name
+    "#{@name} it's a pleasure to meet you.  I'm the Narrabot.".play ("en")
+    puts "\n"
+    "Please choose a story from below.".play ("en")
     make_stories
     list_all_stories
-    audio_or_text
+    audio_or_text_or_fortune
+    #user_choice_audio_version
     more_stories_or_exit
   end
 
@@ -23,59 +27,111 @@ class Narrabot::CLI
     end
   end
 
-  def audio_or_text
+  def audio_or_text_or_fortune
     puts "\nWould you like to read the story as text, or have it played as audio?"
     input = gets.chomp.to_s
-    input.match? /sound|play|audio|speak|speech|talk|loud|hear/i ? switch = "on" : switch = "off"
-    if switch == "on"
-      user_choice_audio_version
+    if input.include? "tell me my fortune"
+      fortune_teller_mode
     else
-      user_choice_text_version
+      input.match? $_=~/sound|play|audio|speak|speech|talk|loud|hear/i ? switch = "on" : switch = "off"
+        if switch == "on"
+          user_choice_audio_version
+        else
+          user_choice_text_version
+        end
     end
   end
 
   def user_choice_text_version
     puts "\nChoose the number of the story you want to read: "
     this_here = pick_a_story
-    puts "\nYou have chosen #{this_here.title}"
+    puts "\n   #{this_here.title}"
+    puts "\n"
     Narrabot::Scraper.aesop_fable_text(this_here) if !this_here.text_and_moral
     puts this_here.text_and_moral
+    puts "\n"
+    puts "Would you like me to read this story in my beautiful voice?"
+    switch = yes_or_no
+    if switch == true
+      "#{this_here.text_and_moral}".play ("en")
+    else
+      "Okay"
+    end
   end
 
   def user_choice_audio_version
     #"put your text to play here".play ("en")
-    # Supported languages: ["zh", "en", "it", "fr"]
-    "Choose the number of the story you would like to hear".play ("en")
+    # Supported languages: ["zh", "en", "it", "fr"]no
+    #"Choose the number of the story you would like to hear".play ("en")
     this_here = pick_a_story
-    "You have chosen #{this_here.title.gsub(/&/, "and")}".play ("en")
+    "We begin #{this_here.title.gsub(/&/, "and")}".play ("en")
     Narrabot::Scraper.aesop_fable_text(this_here) if !this_here.text_and_moral
-    "#{this_here.the_text}".play ("en")
-    "#{this_here.the_moral}".play ("en")
+    "#{this_here.text_and_moral}".play ("en")
   end
 
   def pick_a_story #helper method for user_choice text or audio versions
-    input = gets.chomp.to_i - 1
-    if input.between?(0,145)
-      use_this_to_index = (Narrabot::Story.table_of_contents)
-      chosen_story = Narrabot::Story.table_of_contents[input]
-    else
-      "Sorry, that's not on the list. Try again.".play ("en")
+    puts ".........type the number of the story you want,\n.........or type 'tell me my fortune'."
+    input = gets.chomp
+    checked_input = number_or_string(input)
+
+    if (checked_input.is_a? Integer) && (checked_input!= 555)
+      chosen_story = Narrabot::Story.table_of_contents[checked_input]
+    elsif (checked_input.is_a? Integer) && (checked_input == 555)
+      "Oh my stars #{@name}, you can't count!  I'll choose for you.".play ("en")
+      chosen_story = Narrabot::Story.table_of_contents[rand(1..145)]
+    elsif input.include? "tell me my fortune"
+      fortune_teller_mode
       pick_a_story
+    else
+      "#{@name}?  Yeah.  You know what?  How about I just choose for you?".play ("en")
+      chosen_story = Narrabot::Story.table_of_contents[rand(1..145)]
+    end
+  end
+
+  def number_or_string(input) #helper for pick_a_story
+    new_input = input.gsub(/[^\d]/, "")
+    if new_input.empty?
+      input
+    else #return a valid number
+      new_input.to_i.between?(0,145)? new_input.to_i : 555
+    end
+  end
+
+  def fortune_teller_mode
+    fortune_story = Narrabot::Story.table_of_contents[rand(1..145)]
+    Narrabot::Scraper.aesop_fable_text(fortune_story) if !fortune_story.text_and_moral
+    "#{fortune_story.the_moral}".play ("en")
+    "Would you like the full text for this wisdom?  Don't worry.  I'll just put it on the screen.".play ("en")
+    switch = yes_or_no
+    if switch == true
+      puts "#{fortune_story.text_and_moral}"
+    else
+      "Okay"
+    end
+  end
+
+  def yes_or_no #helper method
+    input = gets.chomp.to_s
+    input.match? $_=~/yes|yep|yeah|yah|\by|oky|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
+    if switch == "on"
+      return true
+    else
+      return false
     end
   end
 
   def more_stories_or_exit
-    puts "\nWould you like another story?"
+    "Would you like another story?".play ("en")
     input = gets.chomp.to_s
-    input.match? /yes|yep|yeah|yah|\by|please|would|more/i ? switch = "on" : switch = "off"
+    input.match? $_=~/yes|yep|yeah|yah|\by|oky|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
     if switch == "on"
-      audio_or_text
+      audio_or_text_or_fortune
+      #user_choice_audio_version
       more_stories_or_exit
     else
-      "Remember #{@name}! #{Narrabot::Story.morals.sample}".play ("en")
+      "OKAY.  See you later.  But, remember #{@name}! #{Narrabot::Story.morals.sample}".play ("en")
+      puts "Bye."
     end
   end
-
-
 
 end

@@ -1,8 +1,11 @@
 # Narrabot
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/narrabot`. To experiment with that code, run `bin/console` for an interactive prompt.
+You're going to need the TTS gem in order to make this program work.
 
-TODO: Delete this and the text above, and describe your gem
+Basically, this gem scrapes Aesop's Fables (morals included!) and delivers the contents
+in text or speech.  You can often switch from one to other.
+
+And it even tells you your fortune! (not really, but it will dispense the moral of the story in Fortune Cookie Wisdom fashion).  If the moral is interesting, Narrabot can either read your story out loud to you, or print the text.
 
 ## Installation
 
@@ -22,7 +25,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+run this file within narrabot as bin/wake_the_narrabot
+you may need to use CHMOD to change the settings.
 
 ## Development
 

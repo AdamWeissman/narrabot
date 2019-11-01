@@ -20,20 +20,21 @@ class Narrabot::Scraper
     sentence_by_sentence = a_single_fable_by_aesop.css("p")
     collect_em_all = sentence_by_sentence.each {|sentence| sentence.text}
     formatting_text_step_1 = collect_em_all.to_s.gsub(/\<\/p\>/, "\n" )
-    formatted_text = formatting_text_step_1.gsub!(/\<p\>/, "   " )
+    formatted_text = formatting_text_step_1.gsub(/\<p\>/, "   " )
 
     the_moral_is = aesop_moral_of_the_story(a_single_fable_by_aesop).to_s
 
-    the_whole_story = formatted_text + "\n" + "   " + the_moral_is
+    the_whole_story = formatted_text + "\n" + "   " + "The moral of the story is: " + the_moral_is
 
     story_object.text_and_moral = the_whole_story
     story_object.the_text = formatted_text
     story_object.the_moral = the_moral_is
+    story_object.parting_moral = the_moral_is
   end
 
   def self.aesop_moral_of_the_story(waiting_for_a_fable_from_aesop_fable_text) #this is a helper method for aesop_fable_text
     moral_of_the_story = waiting_for_a_fable_from_aesop_fable_text.css("blockquote")
-    the_moral_is = "The moral of the story is \"#{moral_of_the_story.text}\""
+    the_moral_is = "#{moral_of_the_story.text}"
   end
 
 end
