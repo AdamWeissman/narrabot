@@ -94,6 +94,7 @@ class Narrabot::CLI
       input
     else #return a valid number
       new_input.to_i.between?(0,145)? new_input.to_i : 555
+      #let the user know it's choosing for you via puts
     end
   end
 
@@ -108,16 +109,14 @@ class Narrabot::CLI
     else
       "Okay"
     end
+    #ternary refactor
   end
 
   def yes_or_no #helper method
     input = gets.chomp.to_s
-    input.match? $_=~/yes|yep|yeah|yah|\by|oky|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
-    if switch == "on"
-      return true
-    else
-      return false
-    end
+    input.match? $_=~/yes|yep|yeah|yah|\by|okay|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
+    #115 is duped, and check out Thor
+    switch == "on"
   end
 
   def more_stories_or_exit
