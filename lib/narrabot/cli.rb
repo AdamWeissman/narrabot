@@ -12,9 +12,10 @@ class Narrabot::CLI
     puts ""
     play_and_puts("Hi #{@name} it's a pleasure to meet you. I'm the narrabot.")
     puts ""
-    play_and_puts("Please choose a story from the list #{}.")
+    play_and_puts("Please choose a story from the list.")
     make_stories
     list_all_stories
+    play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy.  I make negatives positive, decimals I will switch; throw a random number atchya, I make it rain... )
     main_options
     #user_choice_audio_version
     more_stories_or_exit
@@ -55,7 +56,7 @@ class Narrabot::CLI
     j = 123
     while j > 117
       print "\033[2J"
-      File.open("lib/narrabot/#{frames_version}/#{i}.txt").each do |line|
+      File.open("lib/narrabot/#{frames_version}/#{j}.txt").each do |line|
         puts line
       end
       sleep(0.20)
@@ -64,7 +65,7 @@ class Narrabot::CLI
     k = 131
     while k < 135
       print "\033[2J"
-      File.open("lib/narrabot/#{frames_version}/#{i}.txt").each do |line|
+      File.open("lib/narrabot/#{frames_version}/#{k}.txt").each do |line|
         puts line
       end
       sleep(0.20)
@@ -107,7 +108,7 @@ class Narrabot::CLI
     if switch == true
       "#{this_here.text_and_moral}".play ("en")
     else
-      "Okay"
+      play_and_puts("Okay")
     end
   end
 
@@ -115,7 +116,7 @@ class Narrabot::CLI
     this_here = pick_a_story
     "We begin #{this_here.title.gsub(/&/, "and")}".play ("en")
     Narrabot::Scraper.aesop_fable_text(this_here) if !this_here.text_and_moral
-    "#{this_here.text_and_moral}".play ("en")
+    play_and_puts"#{this_here.text_and_moral}"
   end
 
   def pick_a_story #helper method for user_choice text or audio versions
