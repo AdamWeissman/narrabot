@@ -3,7 +3,6 @@ PATH
   specs:
     narrabot (0.1.0)
       nokogiri
-      parallel
       tts
 
 GEM
@@ -14,7 +13,6 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    parallel (1.18.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
