@@ -1,7 +1,7 @@
 class Narrabot::CLI
 
   def set_name
-    play_and_puts("\nWhat's your name? ")
+    play_and_puts("What's your name? ")
     name = gets.chomp.to_s
   end
 
@@ -15,9 +15,9 @@ class Narrabot::CLI
     play_and_puts("Please choose a story from the list.")
     make_stories
     list_all_stories
-    play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy.  I make negatives positive, decimals I will switch; throw a random number atchya, I make it rain...")
+    puts ""
+    #play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy.  I make negatives positive, decimals I will switch; throw a random number atchya instead of a glitch.")
     main_options
-    #user_choice_audio_version
     more_stories_or_exit
   end
 
@@ -104,10 +104,13 @@ class Narrabot::CLI
     puts this_here.text_and_moral
     puts "\n"
     puts "Would you like me to read this story in my beautiful voice?"
-    switch = yes_or_no
+    input = gets.chomp
+    switch = yes_or_no(input)
     if switch == true
+      puts ""
       "#{this_here.text_and_moral}".play ("en")
     else
+      puts ""
       play_and_puts("Okay")
     end
   end
@@ -158,24 +161,23 @@ class Narrabot::CLI
     Narrabot::Scraper.aesop_fable_text(fortune_story) if !fortune_story.text_and_moral
     play_and_puts("#{fortune_story.the_moral}")
     play_and_puts("Would you like the full text for this wisdom?  Don't worry.  I'll just put it on the screen.")
-    switch = yes_or_no
-    switch == true ? (puts "#{fortune_story.text_and_moral}") : (play_and_puts("Okay"))
+    input = gets.chomp
+    yes_or_no(input)? (puts "#{fortune_story.text_and_moral}") : (play_and_puts("Okay"))
   end
 
-  def yes_or_no #helper method
-    input = gets.chomp.to_s
-    puts ""
-    input.match? $_=~/yes|yep|yeah|yah|\by|okay|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
-    #115 is duped, and check out Thor
-    switch == "on"
+  def yes_or_no(some_input) #helper method
+      search_for_yes(some_input)
+  end
+
+  def search_for_yes(get_input) #helper for yes_or_no
+    get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i
   end
 
   def more_stories_or_exit
     play_and_puts("Would you like another story?")
     input = gets.chomp.to_s
     puts ""
-    input.match? $_=~/yes|yep|yeah|yah|\by|oky|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i ? switch = "on" : switch = "off"
-    if switch == "on"
+    if yes_or_no(input)
       main_options
       more_stories_or_exit
     else
@@ -183,5 +185,7 @@ class Narrabot::CLI
       ending_animation
     end
   end
+
+
 
 end
