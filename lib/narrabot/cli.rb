@@ -22,8 +22,31 @@ class Narrabot::CLI
   end
 
   def play_and_puts(a_string)
+    too_long_to_be_trapped_in_audio = a_string.split
+    if too_long_to_be_trapped_in_audio.count > 50 #words
+      break_up_the_text = a_string.split("\n")
+      "Heads up! This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You will be prompted to continue or escape after every paragraph".play ("en")
+      print "CLOSED CAPTIONING: " + "This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You will be prompted to continue or escape after every paragraph" + "\n"
+      break_up_the_text.each do |section|
+        puts "\n"
+        puts "...continue? "
+        input = gets.chomp
+        if input == "yes"
+          "#{section}".play ("en")
+          print "CLOSED CAPTIONING: " + section + "\n"
+        else
+          break
+        end
+      end
+    else
+      "#{a_string}".play ("en")
+      print "CLOSED CAPTIONING: " + a_string + "\n"
+  end
+=begin
+    THIS IS THE OLD METHOD
     "#{a_string}".play ("en")
     print "CLOSED CAPTIONING: " + a_string + "\n"
+=end
   end
 
   def make_stories #calling the scraper
@@ -103,16 +126,16 @@ class Narrabot::CLI
     Narrabot::Scraper.aesop_fable_text(this_here) if !this_here.text_and_moral
     puts this_here.text_and_moral
     puts "\n"
-    puts "Would you like me to read this story in my beautiful voice?"
-    input = gets.chomp
-    switch = yes_or_no(input)
-    if switch == true
-      puts ""
-      "#{this_here.text_and_moral}".play ("en")
-    else
-      puts ""
-      play_and_puts("Okay")
-    end
+    #puts "Would you like me to read this story in my beautiful voice?"
+    #input = gets.chomp
+    #switch = yes_or_no(input)
+    #if switch == true
+    #  puts ""
+    #  "#{this_here.text_and_moral}".play ("en")
+    #else
+    #  puts ""
+    #  play_and_puts("Okay")
+    #end
   end
 
   def user_choice_audio_version
@@ -165,7 +188,7 @@ class Narrabot::CLI
     yes_or_no(input)? (puts "#{fortune_story.text_and_moral}") : (play_and_puts("Okay"))
   end
 
-  def yes_or_no(some_input) #helper method
+  def yes_or_no(some_input) #helper method -- only returns true for yes, otherwise defaults false (no)
       search_for_yes(some_input)
   end
 
