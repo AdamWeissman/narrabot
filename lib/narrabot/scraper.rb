@@ -24,7 +24,7 @@ class Narrabot::Scraper
 
     the_moral_is = aesop_moral_of_the_story(a_single_fable_by_aesop).to_s
 
-    the_whole_story = formatted_text + "\n" + "   " + "The moral of the story is: " + the_moral_is + "\n"
+    the_whole_story = formatted_text + "\n" + "   " + "The moral of the story is: " + the_moral_is + "\n\n"
 
     story_object.text_and_moral = the_whole_story
     story_object.the_text = formatted_text
