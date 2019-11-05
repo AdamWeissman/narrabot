@@ -2,13 +2,13 @@ module Narrabot::HelperElves
 
   def play_and_puts(a_string)
     too_long_to_be_trapped_in_audio = a_string.split
-    if too_long_to_be_trapped_in_audio.count >= 41 #words
+    if too_long_to_be_trapped_in_audio.count >= 26 #words
       break_up_the_text = a_string.split("\n")
-      "Heads up! This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You can quit if you get bored".play ("en")
-      print "CLOSED CAPTIONING: " + "This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You can quit if you get bored." + "\n"
+      "Heads up! This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You'll be prompted if a passage is more than 25 words.".play ("en")
+      print "CLOSED CAPTIONING: " + "This story is #{too_long_to_be_trapped_in_audio.count.to_s} words long. You'll be prompted if a passage is more than 25 words." + "\n"
       break_up_the_text.each do |section|
 
-        if section.split.count <= 40
+        if section.split.count <= 25
           "#{section}".play ("en")
           print "CLOSED CAPTIONING: " + section + "\n"
         else
@@ -82,14 +82,14 @@ module Narrabot::HelperElves
   end
 
   def fortune_animation(frames_version = "psychic_frames")
-    3.times do
+    2.times do
       i = 100
       while i < 116
         print "\033[2J"
         File.open("lib/narrabot/#{frames_version}/#{i}.txt").each do |line|
           puts line
         end
-        sleep(0.20)
+        sleep(0.15)
         i += 1
       end
     end
@@ -136,7 +136,7 @@ module Narrabot::HelperElves
       elsif (checked_input.is_a? Integer) && (checked_input == 555)
         play_and_puts("Oh my stars #{@name}, you can't count!  I'll choose for you.")
         chosen_story = Narrabot::Story.table_of_contents[rand(1..145)]
-      elsif input.include? "fortune"
+      elsif input.downcase.include? "fortune"
         fortune_teller_mode
       else
         "Okay #{@name}. I'll choose".play ("en")
@@ -171,7 +171,7 @@ module Narrabot::HelperElves
     end
 
     def search_for_yes(get_input) #helper for yes_or_no
-      get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|please|would|more|sure|why not|wonderful|awesome|great|like|maybe/i
+      get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|please|would|more|sure|why not|wonderful|awesome|great|maybe yes|alright|like/i
     end
 
 

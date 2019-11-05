@@ -18,7 +18,8 @@ class Narrabot::CLI
     make_stories
     list_all_stories
     puts ""
-    play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy.  I make negatives positive, decimals I will switch; throw a random number atchya instead of a glitch.")
+    play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy...")
+    play_and_puts("I make negatives positive, decimals I will switch; throw a random number atchya instead of a glitch.")
     main_options
     more_stories_or_exit
   end
@@ -37,10 +38,10 @@ class Narrabot::CLI
     play_and_puts("\nWould you like to read the story as text, have it played as audio, or hear your fortune?")
     input = gets.chomp.to_s
     puts ""
-    if input.include? "fortune"
+    if input.downcase.include? "fortune"
       fortune_teller_mode
     else
-      input.match? $_=~/sound|play|audio|speak|speech|talk|loud|hear/i ? switch = "on" : switch = "off"
+      input.match? $_=~/sound|play|audio|speak|speech|talk|tell|regale|loud|hear/i ? switch = "on" : switch = "off"
         if switch == "on"
           user_choice_audio_version
         else
