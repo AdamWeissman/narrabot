@@ -171,7 +171,7 @@ module Narrabot::HelperElves
     end
 
     def search_for_yes(get_input) #helper for yes_or_no
-      get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|please|would|more|sure|why not|wonderful|awesome|great|maybe yes|alright|like/i
+      get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|fine|of course|please|would|more|sure|why not|wonderful|awesome|great|maybe yes|alright|like/i
     end
 
 
