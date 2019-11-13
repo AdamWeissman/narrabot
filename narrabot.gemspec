@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Adam Weissman"]
   spec.email         = ["47704263+AdamWeissman@users.noreply.github.com"]
 
-  spec.summary       = "This summary is not a summary."
-  #spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "https://github.com/AdamWeissman/narrabot" #"TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Scrapes Aesop's Fables and using text to speech gem TTS is tells the stories.  It also tells fortunes."
+  #spec.description   = %q{nolonger a todo: Write a longer description or delete this line.}
+  spec.homepage      = "https://github.com/AdamWeissman/narrabot" #"this was a 'todo' formerly caps: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
   #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"

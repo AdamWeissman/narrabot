@@ -24,4 +24,25 @@ class Narrabot::Story
     @@morals
   end
 
+  def self.search_by_title
+    puts "Type the title of a story"
+    input = gets.chomp
+    if (input == "") || (input == " ")
+      puts "Try again"
+      self.search_by_title
+      else
+      x = 0
+      table_of_contents.each do |story_object|
+        if story_object.title.downcase.include? (input.downcase)
+          get_the_story = Narrabot::Story.table_of_contents[x]
+          Narrabot::Scraper.aesop_fable_text(get_the_story)
+          puts get_the_story.text_and_moral
+          break
+        else
+          x += 1
+        end
+      end
+    end
+  end
+
 end

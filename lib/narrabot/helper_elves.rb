@@ -31,7 +31,7 @@ module Narrabot::HelperElves
   end
 
 =begin
-  THIS IS THE OLD METHOD
+  THIS IS THE OLD WAY -- which wasn't very dry
   "#{a_string}".play ("en")
   print "CLOSED CAPTIONING: " + a_string + "\n"
 =end
@@ -173,6 +173,7 @@ module Narrabot::HelperElves
     def search_for_yes(get_input) #helper for yes_or_no
       get_input.to_s.match? /yes|yep|yeah|yah|\by$|okay|ok|fine|of course|please|would|more|sure|why not|wonderful|awesome|great|maybe yes|alright|like/i
     end
+
 
 
 

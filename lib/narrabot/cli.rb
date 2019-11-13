@@ -17,6 +17,7 @@ class Narrabot::CLI
     play_and_puts("These are the stories I have. You can enjoy them and more at read.gov.")
     make_stories
     list_all_stories
+    #Narrabot::Story.search_by_title
     puts ""
     play_and_puts("Just a heads up #{@name}, in case you get clever and enter a negative number or decimal, or something crazy...")
     play_and_puts("I make negatives positive, decimals I will switch; throw a random number atchya instead of a glitch.")
